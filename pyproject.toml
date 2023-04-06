@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spacer_tutorial"
+version = "0.0.1"
+authors = [
+  { name="Arie Gurfinkel", email="arie.gurfinkel@uwaterloo.ca" },
+]
+description = "Transition systems and other support for Spacer Jupyter Tutorial"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/agurfinkel/spacer-on-jupyter"
+"Bug Tracker" = "https://github.com/agurfinkel/spacer-on-jupyter/issues" 
