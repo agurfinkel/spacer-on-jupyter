@@ -14,3 +14,11 @@ $ pip install -r requirements.txt
 ```
 
 Open notebooks in VSCode and pick the virtual environment engine
+
+## Distribution generation instructions
+
+```
+python -m build
+python3 -m twine upload  dist/* 
+```
+Use `__token__` as username, and the token from PyPi as password
