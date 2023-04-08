@@ -8,12 +8,15 @@ def free_arith_vars(fml):
     vars = set([])
 
     int_sort = z3.IntSort()
+    real_sort = z3.RealSort()
+
+    sorts = [int_sort, real_sort]
 
     def fv(seen, vars, f):
         if f in seen:
             return
         seen |= {f}
-        if f.sort().eq(int_sort) and f.decl().kind() == z3.Z3_OP_UNINTERPRETED:
+        if (f.sort() in sorts) and f.decl().kind() == z3.Z3_OP_UNINTERPRETED:
             vars |= {f}
         for ch in f.children():
             fv(seen, vars, ch)
