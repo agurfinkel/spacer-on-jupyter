@@ -8,6 +8,7 @@ from .ts import *
 from .cfa import *
 from .dcfa import *
 from .bakery import *
+from .xnet import *
 
 # proof mode must be enabled before any expressions are created
 z3.set_param(proof=True)

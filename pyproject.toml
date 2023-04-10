@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "spacer_tutorial"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Arie Gurfinkel", email="arie.gurfinkel@uwaterloo.ca" },
 ]
