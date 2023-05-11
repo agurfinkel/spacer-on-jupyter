@@ -1,6 +1,9 @@
 """Control Flow Automata."""
 import graphviz
 from .ts import Ts
+from .fml import mk_not
+
+import z3
 
 class CFA(object):
     """Control Flow Automaton.
@@ -48,7 +51,14 @@ class CFA(object):
     def add_edge(self, src, dst, tr):
         self.nodes.add(src)
         self.nodes.add(dst)
-        self.edges[(src, dst)] = tr
+        if (src, dst) in self.edges:
+            tr0 = self.edges[(src, dst)]
+            if isinstance(tr0, list):
+                self.edges[(src, dst)].append(tr)
+            else:
+                self.edges[(src, dst)] = [tr0, tr]
+        else:
+            self.edges[(src, dst)] = tr
 
     def set_entry_node(self, n):
         self.nodes.add(n)
@@ -63,6 +73,10 @@ class CFA(object):
 
     def is_exit_node(self, n):
         return n == self.exit
+
+    def add_assert(self, state, exp):
+        assert self.exit is not None
+        self.add_edge(state, self.exit, mk_not(exp))
 
     def to_dot(self):
         g = graphviz.Digraph()

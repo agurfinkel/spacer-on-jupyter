@@ -84,7 +84,11 @@ def cfa_vc_gen(A):
 
         head = dstP(*A.post_vars())
         sPred = srcP(*A.pre_vars())
-        vc.append(z3.ForAll(all_vars, z3.Implies(z3.And(sPred, v), head)))
+        if isinstance(v, list):
+            for e in v:
+                vc.append(z3.ForAll(all_vars, z3.Implies(z3.And(sPred, e), head)))
+        else:
+            vc.append(z3.ForAll(all_vars, z3.Implies(z3.And(sPred, v), head)))
     vc.append(z3.ForAll(all_vars,
                         z3.Implies(Exit(*A.pre_vars()), z3.BoolVal(False))))
     return vc, {n: Invs[n](A.pre_vars()) for n in A.nodes}
